@@ -17,6 +17,9 @@
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation %>
 
+      <%= f.hidden_field :language, :value => "en" %>
+      <%= f.hidden_field :timezone, :value => "5" %>
+
       <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>
