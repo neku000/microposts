@@ -191,3 +191,25 @@ aside {
     margin-bottom: 5px;
   }
 }
+
+
+/* follow_users */
+
+.follow_users {
+  list-style: none;
+  padding: 0;
+  li {
+    height: 80px;
+    padding: 10px 0px;
+    border-top: 1px solid #e8e8e8;
+  }
+  .user {
+    margin-top: 5em;
+    padding-top: 0;
+  }
+  .gravatar {
+    float: left;
+    margin-right: 10px;
+    margin-top: 5px;
+  }
+}
