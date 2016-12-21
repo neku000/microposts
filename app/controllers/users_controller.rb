@@ -1,10 +1,9 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update]
-  before_action :set_user, only: [:edit, :update]
-  
+  before_action :set_user, only: [:show, :edit, :update]
+
   def show
-    @user = User.find(params[:id])
-    @microposts = @user.microposts.order(created_at: :desc)
+    @microposts = @user.microposts.order(created_at: :desc).page(params[:page]).per(4)
   end
   
   def new
@@ -26,11 +25,15 @@ class UsersController < ApplicationController
   end
   
   def update
-    if @user.update(user_params)
-      flash[:success] = "Your profile has been updated!"
-      redirect_to @user
+    if @user.id == current_user.id
+      if @user.update(user_params)
+        flash[:success] = "Your profile has been updated!"
+        redirect_to @user
+      else
+        render 'edit'
+      end
     else
-      render 'edit'
+      redirect_to 'home'
     end
   end
   
@@ -57,6 +60,6 @@ class UsersController < ApplicationController
   end
   
   def set_user
-    @user = current_user
+    @user = User.find(params[:id])
   end
 end
